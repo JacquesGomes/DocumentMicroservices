@@ -94,4 +94,15 @@ public class NotePlain {
                 ", body='" + body  +
                 ", comment='" + comment;
     }
+
+    /*public String getNoteInfo() {
+        return "NotePlain:" +
+                "id=" + id +
+                ", noteId=" + noteId +
+                ", header='" + header +
+                ", body='" + body  +
+                ", comment='" + comment;
+    }*/
+
+
 }

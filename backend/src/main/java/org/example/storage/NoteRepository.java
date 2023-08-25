@@ -15,5 +15,6 @@ public interface NoteRepository extends JpaRepository<NotePlain, Long> {
     // with and/or. Also with 'Between, LessThan, GreaterThen, Like'.
 
     NotePlain[] findNotesByHeader(String header);
+    NotePlain[] findNotesByHeaderAndBody(String header, String body);
 
 }
