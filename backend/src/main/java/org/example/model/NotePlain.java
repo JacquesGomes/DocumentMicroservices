@@ -2,6 +2,8 @@ package org.example.model;
 
 
 import jakarta.persistence.*;
+import jdk.jfr.DataAmount;
+
 
 @Entity
 @Table(name="NOTE") // if not set, it would use the class name
@@ -29,7 +31,9 @@ public class NotePlain {
     public NotePlain(){
     }
 
-    public NotePlain(Long noteId, String header, String body, String comment) {
+    public NotePlain(Long id, Long noteId, String header, String body,
+                     String comment) {
+        this.id = id;
         this.noteId = noteId;
         this.header = header;
         this.body = body;

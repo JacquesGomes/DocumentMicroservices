@@ -56,5 +56,23 @@ public class Exercise4Controller {
         }
         return notes;
     }
+
+    @GetMapping("/exercise4/notes/{header}")
+    public NotePlain[] getNotesByHeader(@PathVariable String header){
+        NotePlain[] notes = null;
+        try{
+            log.info("Exercise 4, retrieving notes with header: " + header);
+            notes = noteRepository.findNotesByHeader(header);
+            log.info("Exercise 4, retrieved " + notes.length + " notes with " +
+                    "header: " + header);
+
+        } catch (Exception e){
+            log.error("Exercise 4, error retrieving the notes from the " +
+                    "database with header: " + header, e);
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,
+                    "Error retrieving the notes with header: " + header);
+        }
+        return notes;
+    }
 }
 
