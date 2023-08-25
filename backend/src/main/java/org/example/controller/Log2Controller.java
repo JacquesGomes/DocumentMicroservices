@@ -13,12 +13,12 @@ public class Log2Controller {
 
     @PostMapping("log2/note")
     public void logPOSTnote(@RequestBody NotePlain note){
-        log.info("Log 2, post mapping received, note: " + note + note.getNoteInfo());
+        log.info("Log 2, post mapping received, note: " + note + note.retrieveNoteInfo());
     }
 
     @PutMapping("log2/note")
     public void logPUTnote(@RequestBody NotePlain note){
-        log.info("Log 2, PUT mapping received, " + note.getNoteInfo());
+        log.info("Log 2, PUT mapping received, " + note.retrieveNoteInfo());
     }
 
     @DeleteMapping("log2/note/{id}")

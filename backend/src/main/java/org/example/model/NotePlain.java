@@ -75,9 +75,17 @@ public class NotePlain {
     public void setComment(String comment) {
         this.comment = comment;
     }
-    public String getNoteInfo() {
+
+    //if it has 'get' on the title, spring will retrieve along with the
+    // attributes
+    //To avoid that, we only need to rename the method
+
+    //old method "public String getNoteInfo() -> it has coming along with the
+    // database fields in the GetMapping
+    public String retrieveNoteInfo() {
         return "NotePlain:" +
-                "noteId=" + noteId +
+                "id=" + id +
+                ", noteId=" + noteId +
                 ", header='" + header +
                 ", body='" + body  +
                 ", comment='" + comment;
