@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class NoteDocumentRefBinder {
 
     private NotePlain note = null;
-    private ArrayList<String> docIds = null;
+    private ArrayList<String> docIds = new ArrayList<String>();
 
     public NoteDocumentRefBinder() {
     }
@@ -30,4 +30,9 @@ public class NoteDocumentRefBinder {
     public void setDocIds(ArrayList<String> docIds) {
         this.docIds = docIds;
     }
+
+    public void addDocumentReference(String docRef){
+        this.docIds.add(docRef);
+    }
+
 }

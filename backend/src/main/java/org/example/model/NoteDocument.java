@@ -3,7 +3,9 @@ package org.example.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="NOTE_DOCUMENT")
+@Table(name = "NOTE_DOCUMENT",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"NOTE_ID", "DOC_ID"})
+)
 public class NoteDocument {
 
     @GeneratedValue(strategy = GenerationType.TABLE)

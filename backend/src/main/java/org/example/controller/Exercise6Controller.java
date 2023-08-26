@@ -43,25 +43,69 @@ public class Exercise6Controller {
             note = noteBinder.getNote();
             persistentNote =
                     noteRepository.findNotePlainByNoteId(note.getNoteId());
-            if(persistentNote != null){
+            if(persistentNote == null || persistentNote.getNoteId().equals("")){
                 throw new NoteException("The note did not exist, noteId: " + note.getNoteId());
             }
 
             docIds = noteBinder.getDocIds();
             for(int i = 0; i < docIds.size(); i++){
-                log.info("Exercise 6, saved note id and doc id: " + note.getNoteId() + " / " + docIds.get(i));
+                log.info("Exercise 6, saved note id " + note.getNoteId() + " " +
+                                "and doc id: " + docIds.get(i));
                 noteDocRepository.save(new NoteDocument(note.getNoteId(),
                         docIds.get(i)));
             }
 
         } catch (Exception e){
             log.error("Exercise 6, an error ocurred saving document reference" +
-                    " to a note");
+                    " to a note", e);
             throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE,
                     "Exercise 6, an error ocurred saving document reference" +
-                            " to a note");
+                            " to a note " + e.getMessage());
 
         }
+
+
     }
+
+    @GetMapping("exercise6/noteDocReferences/{noteId}")
+    public NoteDocumentRefBinder getNoteWithDocumentReferentes(@PathVariable Long noteId){
+        NoteDocumentRefBinder noteBinder = null;
+        NotePlain note = null;
+        NoteDocument[] noteDocuments = null;
+        String docId = "";
+        try{
+            noteBinder = new NoteDocumentRefBinder();
+
+            note = noteRepository.findNotePlainByNoteId(noteId);
+
+            if(note == null || note.getNoteId().equals("")){
+                throw new NoteException("The note did not exist in the " +
+                        "database note id: " + noteId);
+            }
+
+            noteBinder.setNote(note);
+
+            noteDocuments =
+                    noteDocRepository.findAllNoteDocumentsBynoteId(noteId);
+
+            for(int i = 0 ; i < noteDocuments.length; i++){
+                docId = noteDocuments[i].getDocId();
+                log.info("adding a document reference to the binder, docId: "+ docId);
+                noteBinder.addDocumentReference(noteDocuments[i].getDocId());
+
+            }
+
+        } catch (Exception e){
+            log.error("An error ocurred retrieving the note and note " +
+                    "references for note id: " + noteId, e);
+            throw new ResponseStatusException(HttpStatus.SERVICE_UNAVAILABLE, "An error ocurred retrieving the note and note " +
+                    "references for note id: " + noteId);
+
+        }
+
+        return noteBinder;
+
+    }
+
 
 }

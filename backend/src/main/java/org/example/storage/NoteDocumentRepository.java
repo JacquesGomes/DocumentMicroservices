@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NoteDocumentRepository extends JpaRepository<NoteDocument,
         Long> {
-
+    NoteDocument[] findAllNoteDocumentsBynoteId(Long noteId);
 }
