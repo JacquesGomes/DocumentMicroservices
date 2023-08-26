@@ -87,12 +87,12 @@ public class NotePlain {
     //old method "public String getNoteInfo() -> it has coming along with the
     // database fields in the GetMapping
     public String retrieveNoteInfo() {
-        return "NotePlain:" +
+        return "NotePlain: " +
                 "id=" + id +
                 ", noteId=" + noteId +
-                ", header='" + header +
-                ", body='" + body  +
-                ", comment='" + comment;
+                ", header=" + header +
+                ", body=" + body  +
+                ", comment=" + comment;
     }
 
     /*public String getNoteInfo() {
