@@ -24,22 +24,16 @@ public class ExerciseControllerTest {
         return new NotePlain(TestNotePlain.ID,
                 TestNotePlain.NOTE_ID, TestNotePlain.HEADER,
                 TestNotePlain.BODY, TestNotePlain.COMMENT);
-
-
     }
 
     @Test
     public void testNotePlain(){
-
         NotePlain note = null;
         log.info(() -> "Testando Note Class");
         note = getTestNotePlain();
         assert (TestNotePlain.ID).equals(note.getId());
         assert (TestNotePlain.HEADER).equals(note.getHeader());
-
         log.info(() -> "Teste completo");
-
-
     }
 
 }
